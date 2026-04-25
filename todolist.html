@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #todo-form { margin: 20px 0; }
+        #todos { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>To-Do List Application</h1>
+    <form id="todo-form">
+        <input type="text" id="todo-input" placeholder="Add a new task..." required>
+        <button type="submit">Add</button>
+    </form>
+    <ul id="todos"></ul>
+    <script>
+        // Load tasks from local storage
+        document.addEventListener('DOMContentLoaded', loadTodos);
+
+        const form = document.getElementById('todo-form');
+        const input = document.getElementById('todo-input');
+        const todosList = document.getElementById('todos');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            addTodo(input.value);
+            input.value = '';
+        });
+
+        function addTodo(task) {
+            const li = document.createElement('li');
+            li.textContent = task;
+            li.addEventListener('click', function() {
+                this.classList.toggle('completed');
+                saveTodos();
+            });
+            todosList.appendChild(li);
+            saveTodos();
+        }
+
+        function saveTodos() {
+            const todos = [];
+            todosList.querySelectorAll('li').forEach(li => {
+                todos.push({ task: li.textContent, completed: li.classList.contains('completed') });
+            });
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+
+        function loadTodos() {
+            const todos = JSON.parse(localStorage.getItem('todos')) || [];
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.textContent = todo.task;
+                if (todo.completed) {
+                    li.classList.add('completed');
+                }
+                li.addEventListener('click', function() {
+                    this.classList.toggle('completed');
+                    saveTodos();
+                });
+                todosList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
