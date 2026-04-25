@@ -11,10 +11,12 @@
     --dark: #0f172a;
     --light: #f8fafc;
     --text: #1e293b;
+    --gray: #64748b;
 }
 
 html {
     scroll-behavior: smooth;
+    font-size: 16px;
 }
 
 body {
@@ -36,60 +38,68 @@ header {
 }
 
 .navbar {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .nav-menu {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 20px;
+    align-items: center;
 }
 
 .nav-menu a {
     color: white;
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.95rem;
     transition: all 0.3s;
+    padding: 8px 12px;
+    border-radius: 4px;
 }
 
 .nav-menu a:hover {
     color: var(--secondary);
-    transform: translateY(-2px);
+    background: rgba(255,255,255,0.1);
 }
 
 /* ============ HERO ============ */
 .hero {
     background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
     color: white;
-    padding: 120px 20px;
+    padding: 80px 20px;
     text-align: center;
-    min-height: 60vh;
+    min-height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    font-weight: 700;
 }
 
 .hero-content p {
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 3vw, 1.3rem);
     margin-bottom: 40px;
     opacity: 0.95;
 }
@@ -97,10 +107,10 @@ header {
 .cta-btn {
     background: var(--secondary);
     color: white;
-    padding: 15px 50px;
+    padding: 12px 40px;
     border: none;
     border-radius: 50px;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
@@ -112,20 +122,25 @@ header {
     box-shadow: 0 6px 20px rgba(249,115,22,0.6);
 }
 
+.cta-btn:active {
+    transform: translateY(-1px);
+}
+
 /* ============ SECTIONS ============ */
 section {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 20px;
+    padding: clamp(50px, 10vw, 80px) 20px;
 }
 
 section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 50px;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-bottom: clamp(30px, 5vw, 50px);
     text-align: center;
     color: var(--primary);
     position: relative;
     padding-bottom: 20px;
+    font-weight: 700;
 }
 
 section h2::after {
@@ -145,45 +160,56 @@ section h2::after {
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    gap: 40px;
     align-items: center;
 }
 
 .about-content p {
     margin-bottom: 15px;
-    color: #64748b;
+    color: var(--gray);
     line-height: 1.8;
+    font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .features {
     list-style: none;
     margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .features li {
-    padding: 10px 0;
+    padding: 8px 0;
     color: var(--primary);
     font-weight: 500;
+    font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 15px;
 }
 
 .stat-box {
     background: white;
-    padding: 25px;
+    padding: clamp(15px, 4vw, 25px);
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .stat-box h3 {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     color: var(--secondary);
     margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.stat-box p {
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    color: var(--gray);
 }
 
 /* ============ SERVICES ============ */
@@ -193,13 +219,13 @@ section h2::after {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 .service-card {
     background: var(--light);
-    padding: 40px 30px;
+    padding: clamp(25px, 5vw, 40px);
     border-radius: 10px;
     text-align: center;
     transition: all 0.3s;
@@ -213,7 +239,7 @@ section h2::after {
 }
 
 .service-card i {
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     color: var(--secondary);
     margin-bottom: 15px;
 }
@@ -221,6 +247,13 @@ section h2::after {
 .service-card h3 {
     color: var(--primary);
     margin-bottom: 10px;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-weight: 600;
+}
+
+.service-card p {
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--gray);
 }
 
 /* ============ WHY CHOOSE ============ */
@@ -240,12 +273,12 @@ section h2::after {
 .benefits {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    gap: 20px;
 }
 
 .benefit {
     background: rgba(255,255,255,0.1);
-    padding: 25px;
+    padding: clamp(15px, 4vw, 25px);
     border-radius: 8px;
     border-left: 4px solid var(--secondary);
     transition: all 0.3s;
@@ -256,6 +289,17 @@ section h2::after {
     transform: translateX(10px);
 }
 
+.benefit h4 {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.benefit p {
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    opacity: 0.95;
+}
+
 /* ============ TESTIMONIALS ============ */
 #testimonials {
     background: var(--light);
@@ -263,27 +307,37 @@ section h2::after {
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
 }
 
 .testimonial {
     background: white;
-    padding: 30px;
+    padding: clamp(20px, 4vw, 30px);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     border-left: 4px solid var(--accent);
+    transition: all 0.3s;
+}
+
+.testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 .testimonial p {
     font-style: italic;
     margin-bottom: 15px;
-    color: #64748b;
+    color: var(--gray);
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    line-height: 1.6;
 }
 
 .testimonial h4 {
     color: var(--primary);
     margin-bottom: 10px;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-weight: 600;
 }
 
 .rating {
@@ -298,32 +352,39 @@ section h2::after {
 
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
 }
 
 .price-card {
     background: var(--light);
     border: 2px solid #e2e8f0;
-    padding: 40px 30px;
+    padding: clamp(25px, 5vw, 40px);
     border-radius: 10px;
     text-align: center;
     transition: all 0.3s;
 }
 
+.price-card:hover {
+    border-color: var(--secondary);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
 .price-card.featured {
     border-color: var(--secondary);
-    transform: scale(1.05);
+    transform: scale(1);
     box-shadow: 0 10px 30px rgba(249,115,22,0.2);
 }
 
 .price-card h3 {
     color: var(--primary);
     margin-bottom: 15px;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: 600;
 }
 
 .price-card .price {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 2.5rem);
     color: var(--secondary);
     font-weight: 700;
     margin: 20px 0;
@@ -331,31 +392,34 @@ section h2::after {
 
 .price-card ul {
     list-style: none;
-    margin: 30px 0;
+    margin: 25px 0;
     text-align: left;
 }
 
 .price-card li {
-    padding: 10px 0;
+    padding: 8px 0;
     border-bottom: 1px solid #cbd5e1;
-    color: #64748b;
+    color: var(--gray);
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
 }
 
 .price-card button {
     background: var(--primary);
     color: white;
     border: none;
-    padding: 12px 30px;
+    padding: 12px 25px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s;
     width: 100%;
     margin-top: 20px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .price-card button:hover {
     background: var(--secondary);
+    transform: translateY(-2px);
 }
 
 /* ============ CONTACT ============ */
@@ -375,13 +439,25 @@ section h2::after {
 .contact-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    gap: 40px;
 }
 
 .contact-info {
     background: rgba(255,255,255,0.1);
-    padding: 30px;
+    padding: clamp(20px, 4vw, 30px);
     border-radius: 10px;
+}
+
+.contact-info h3 {
+    margin-bottom: 20px;
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
+    font-weight: 600;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.8;
 }
 
 .contact-form {
@@ -398,6 +474,7 @@ section h2::after {
     border-radius: 5px;
     color: white;
     font-family: inherit;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     transition: all 0.3s;
 }
 
@@ -411,17 +488,24 @@ section h2::after {
     outline: none;
     border-color: var(--secondary);
     background: rgba(255,255,255,0.15);
+    box-shadow: 0 0 0 3px rgba(249,115,22,0.2);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
 }
 
 .contact-form button {
     background: var(--secondary);
     color: white;
-    padding: 15px;
+    padding: 12px 25px;
     border: none;
     border-radius: 5px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
 
 .contact-form button:hover {
@@ -434,59 +518,317 @@ footer {
     background: var(--dark);
     color: white;
     text-align: center;
-    padding: 40px 20px;
+    padding: clamp(25px, 5vw, 40px) 20px;
     border-top: 3px solid var(--secondary);
 }
 
 footer p {
-    margin: 10px 0;
+    margin: 8px 0;
     opacity: 0.9;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
 }
 
-/* ============ RESPONSIVE ============ */
-@media (max-width: 768px) {
+/* ============ TABLET (768px - 1024px) ============ */
+@media (max-width: 1024px) {
     .nav-menu {
-        flex-direction: column;
         gap: 15px;
-    }
-
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-
-    section {
-        padding: 50px 15px;
-    }
-
-    section h2 {
-        font-size: 2rem;
     }
 
     .about-content,
     .contact-wrapper {
         grid-template-columns: 1fr;
+        gap: 30px;
     }
 
     .stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .price-card.featured {
         transform: scale(1);
     }
+
+    section {
+        padding: clamp(40px, 8vw, 60px) 20px;
+    }
 }
 
+/* ============ MOBILE (480px - 767px) ============ */
+@media (max-width: 767px) {
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    .nav-menu a {
+        font-size: 0.9rem;
+        padding: 10px 8px;
+        display: inline-block;
+    }
+
+    .hero {
+        padding: 60px 20px;
+        min-height: 40vh;
+    }
+
+    section {
+        padding: clamp(30px, 6vw, 50px) 15px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-box {
+        padding: 15px;
+    }
+
+    .stat-box h3 {
+        font-size: 2rem;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .testimonial {
+        padding: 15px;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .price-card {
+        padding: 20px;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .contact-info {
+        padding: 15px;
+    }
+
+    .contact-form {
+        gap: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 10px 12px;
+        font-size: 16px;
+    }
+
+    .benefits {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .benefit {
+        padding: 12px;
+    }
+
+    .feature-list {
+        flex-direction: column;
+    }
+}
+
+/* ============ SMALL MOBILE (< 480px) ============ */
 @media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
     .nav-container {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .nav-menu {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .nav-menu a {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+
+    .hero {
+        padding: 40px 15px;
+        min-height: 35vh;
     }
 
     .hero-content h1 {
         font-size: 1.8rem;
     }
 
-    .benefits {
-        grid-template-columns: 1fr;
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+
+    .cta-btn {
+        padding: 10px 30px;
+        font-size: 0.95rem;
+    }
+
+    section {
+        padding: 25px 12px;
+    }
+
+    section h2 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    section h2::after {
+        width: 60px;
+        height: 3px;
+    }
+
+    .about-content p {
+        font-size: 0.9rem;
+    }
+
+    .features {
+        gap: 8px;
+    }
+
+    .features li {
+        font-size: 0.9rem;
+        padding: 6px 0;
+    }
+
+    .stat-box {
+        padding: 12px;
+    }
+
+    .stat-box h3 {
+        font-size: 1.5rem;
+    }
+
+    .stat-box p {
+        font-size: 0.8rem;
+    }
+
+    .service-card {
+        padding: 20px;
+    }
+
+    .service-card i {
+        font-size: 2rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .service-card p {
+        font-size: 0.85rem;
+    }
+
+    .testimonial {
+        padding: 12px;
+    }
+
+    .testimonial p {
+        font-size: 0.85rem;
+    }
+
+    .testimonial h4 {
+        font-size: 0.8rem;
+    }
+
+    .price-card {
+        padding: 15px;
+    }
+
+    .price-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .price-card .price {
+        font-size: 1.8rem;
+    }
+
+    .price-card li {
+        font-size: 0.8rem;
+        padding: 6px 0;
+    }
+
+    .price-card button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
+
+    .contact-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .contact-info p {
+        font-size: 0.85rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 10px 12px;
+        font-size: 16px;
+    }
+
+    .contact-form button {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+        margin: 5px 0;
+    }
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ripple-animation {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(4);
+        opacity: 0;
     }
 }
