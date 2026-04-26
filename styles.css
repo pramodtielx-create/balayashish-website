@@ -495,6 +495,17 @@ section h2::after {
     resize: vertical;
     min-height: 120px;
 }
+/* === CONTACT LINKS VISIBILITY FIX === */
+#contact a {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+#contact a:hover {
+    color: var(--secondary); /* orange */
+    text-decoration: none;
+}
 
 .contact-form button {
     background: var(--secondary);
