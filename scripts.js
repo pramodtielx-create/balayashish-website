@@ -174,7 +174,7 @@ document.querySelectorAll('.stat-box h3').forEach(stat => {
   observer.observe(stat);
 });
 
-    animateCounters();
+  
 
     // ===== BUTTON RIPPLE EFFECT =====
     const buttons = document.querySelectorAll('button');
