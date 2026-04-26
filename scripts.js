@@ -140,34 +140,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ===== COUNTER ANIMATION FOR STATS =====
-    const animateCounters = () => {
-        const statBoxes = document.querySelectorAll('.stat-box h3');
-        
-        statBoxes.forEach(statBox => {
-            const observeStat = new IntersectionObserver(entries => {
-                if (entries[0].isIntersecting) {
-                    const target = parseInt(statBox.textContent.replace(/\D/g, ''));
-                    let current = 0;
-                    const increment = target / 30;
+   // ===== COUNTER ANIMATION (FINAL FIX) =====
+document.querySelectorAll('.stat-box h3').forEach(stat => {
+  const originalText = stat.textContent.trim();
 
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            statBox.textContent = target + '+';
-                            clearInterval(timer);
-                        } else {
-                            statBox.textContent = Math.floor(current) + '+';
-                        }
-                    }, 30);
+  // ✅ Do NOT animate symbolic values
+  if (originalText.includes('K') || originalText.includes('%')) {
+    stat.textContent = originalText; // keep exactly as written
+    return;
+  }
 
-                    observeStat.unobserve(statBox);
-                }
-            }, { threshold: 0.5 });
+  // ✅ Animate only plain numbers like "15+"
+  const number = parseInt(originalText.replace(/\D/g, ''), 10);
+  let current = 0;
 
-            observeStat.observe(statBox);
-        });
-    };
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      const interval = setInterval(() => {
+        current += Math.ceil(number / 40);
+
+        if (current >= number) {
+          stat.textContent = number + '+';
+          clearInterval(interval);
+        } else {
+          stat.textContent = current + '+';
+        }
+      }, 30);
+
+      observer.unobserve(stat);
+    }
+  }, { threshold: 0.6 });
+
+  observer.observe(stat);
+});
 
     animateCounters();
 
